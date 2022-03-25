@@ -1,11 +1,13 @@
 read -r -p "Enter user name: " user
-sudo mosquitto_passwd -c /etc/mosquitto/passwd $user
+read -r -p "Enter password: " password
+sudo mosquitto_passwd -b /etc/mosquitto/passwd $user $password
 
 while : ; do
     read -r -p "Do you want to add another client user? [y/n] " response
     if [[ $response =~ ^[yY]$ ]]; then
         read -r -p "Enter user name: " user
-        sudo mosquitto_passwd -c /etc/mosquitto/passwd $user
+        read -r -p "Enter password: " password
+        sudo mosquitto_passwd -b /etc/mosquitto/passwd $user $password
     else
         break
     fi
